@@ -1,12 +1,14 @@
-import { Router } from "express";
-import CreateUserService from "../services/users/CreateUserService";
+import { Router } from 'express';
+import CreateUserService from '../services/users/CreateUserService';
 
 const usersRouter = Router();
 
-usersRouter.post("/", async (request, response) => {
+usersRouter.post('/', async (request, response) => {
 	const {
 		adminSecret,
-		username,
+		isAdmin,
+		name,
+		email,
 		password,
 		passwordConfirmation,
 	} = request.body;
@@ -15,7 +17,9 @@ usersRouter.post("/", async (request, response) => {
 
 	const user = await createUserService.execute({
 		adminSecret,
-		username,
+		isAdmin,
+		name,
+		email,
 		password,
 		passwordConfirmation,
 	});

@@ -12,13 +12,13 @@ class User {
 	id: string;
 
 	@Column()
-	admin: boolean;
+	isAdmin: boolean;
 
 	@Column()
 	email: string;
 
 	@Column()
-	password?: string;
+	password: string;
 
 	@Column()
 	name: string;
