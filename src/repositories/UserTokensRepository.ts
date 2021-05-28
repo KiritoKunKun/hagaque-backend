@@ -1,7 +1,7 @@
-import UserToken from "../database/models/UserToken";
-import IUserTokensRepository from "./interfaces/IUserTokensRepository";
-import { getRepository } from "typeorm";
-import AppError from "../errors/AppError";
+import { UserToken } from '@database/models/UserToken';
+import { getRepository } from 'typeorm';
+import AppError from '../errors/AppError';
+import IUserTokensRepository from './interfaces/IUserTokensRepository';
 
 class UserTokensRepository implements IUserTokensRepository {
 	public async generate(user_id: string): Promise<UserToken> {
@@ -38,7 +38,7 @@ class UserTokensRepository implements IUserTokensRepository {
 		});
 
 		if (!userToken) {
-			throw new AppError("User token does not exists");
+			throw new AppError('User token does not exists');
 		}
 
 		await userTokensRepository.delete({
@@ -47,4 +47,4 @@ class UserTokensRepository implements IUserTokensRepository {
 	}
 }
 
-export default UserTokensRepository;
+export { UserTokensRepository };

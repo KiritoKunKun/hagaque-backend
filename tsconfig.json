@@ -7,9 +7,10 @@
 		"strict": true,
 		"strictPropertyInitialization": false,
 		"allowJs": true,
-		"baseUrl": "./src",
+		"baseUrl": ".",
 		"paths": {
-			"@config/*": ["config/*"]
+			"@config/*": ["src/config/*"],
+			"@database/*": ["src/database/*"]
 		},
 		"esModuleInterop": true,
 		"experimentalDecorators": true,

@@ -1,6 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
 import authConfig from '@config/auth';
+import User from '@database/models/User';
+import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
+import { getRepository } from 'typeorm';
 import AppError from '../errors/AppError';
 
 interface TokenPayload {
@@ -9,11 +11,11 @@ interface TokenPayload {
 	sub: string;
 }
 
-export default function ensureAuthenticated(
+export const ensureAdmin = async (
 	request: Request,
 	response: Response,
 	next: NextFunction
-): void {
+) => {
 	const authHeader = request.headers.authorization;
 
 	if (!authHeader) {
@@ -31,8 +33,18 @@ export default function ensureAuthenticated(
 			id: sub,
 		};
 
+		const { id } = request.user;
+
+		const usersRepository = getRepository(User);
+
+		const user = await usersRepository.findOne(id);
+
+		if (!user?.isAdmin) {
+			throw new AppError('O usuário não é um administrador.');
+		}
+
 		return next();
-	} catch {
-		throw new AppError('Invalid JWT token', 401);
+	} catch (error) {
+		throw new AppError(error.message || 'Token JWT inválido.', 401);
 	}
-}
+};
