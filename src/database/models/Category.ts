@@ -2,7 +2,6 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
-	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
@@ -17,6 +16,8 @@ class Category {
 
 	@Column()
 	parentId?: string;
+
+	children?: Category[];
 
 	@CreateDateColumn()
 	created_at: Date;
