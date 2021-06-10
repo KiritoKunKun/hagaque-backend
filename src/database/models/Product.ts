@@ -2,9 +2,12 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	JoinTable,
+	ManyToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
+import { Category } from './Category';
 
 @Entity('products')
 class Product {
@@ -15,19 +18,10 @@ class Product {
 	name: string;
 
 	@Column()
-	number: number;
+	salePrice: number;
 
 	@Column()
-	price: number;
-
-	@Column()
-	categories: string;
-
-	@Column()
-	saleAmount?: number;
-
-	@Column()
-	rentAmount?: number;
+	rentPrice?: number;
 
 	@Column()
 	image: string;
@@ -40,6 +34,10 @@ class Product {
 
 	@Column()
 	barCode?: string;
+
+	@ManyToMany(() => Category)
+	@JoinTable()
+	categories: Category[];
 
 	@CreateDateColumn()
 	created_at: Date;
