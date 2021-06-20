@@ -10,7 +10,8 @@
 		"baseUrl": ".",
 		"paths": {
 			"@config/*": ["src/config/*"],
-			"@database/*": ["src/database/*"]
+			"@database/*": ["src/database/*"],
+			"@shared/*": ["src/shared/*"]
 		},
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
