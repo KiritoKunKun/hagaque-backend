@@ -22,7 +22,7 @@ class AuthenticateUserService {
 		const user = await userRepository.findOne({ where: { email } });
 
 		if (!user) {
-			throw new AppError('Este usuário não existe.', 401);
+			throw new AppError('Usuário ou senha inválidos.', 401);
 		}
 
 		const passwordMatched = await compare(password, user.password);

@@ -1,4 +1,4 @@
-import UserToken from "../../database/models/UserToken";
+import { UserToken } from '@database/models/UserToken';
 
 export default interface IUserTokensRepository {
 	generate(user_id: string): Promise<UserToken>;
