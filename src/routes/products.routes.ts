@@ -3,6 +3,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import ProductImageController from 'src/controllers/ProductImageController';
 import { ensureAdmin } from 'src/middlewares/ensureAdmin';
+import { CreateManyProductsService } from 'src/services/products/CreateManyProductsService';
 import { CreateProductService } from 'src/services/products/CreateProductService';
 import UpdateProductImageService from 'src/services/products/UpdateProductImageService';
 import { container } from 'tsyringe';
@@ -22,7 +23,7 @@ productsRouter.post('/', ensureAdmin, async (request, response) => {
 		description,
 		isbn,
 		barCode,
-		categories,
+		categoriesIds,
 	} = request.body;
 
 	const createProductService = new CreateProductService();
@@ -35,8 +36,18 @@ productsRouter.post('/', ensureAdmin, async (request, response) => {
 		description,
 		isbn,
 		barCode,
-		categories,
+		categoriesIds,
 	});
+
+	return response.send();
+});
+
+productsRouter.post('/list', ensureAdmin, async (request, response) => {
+	const { products } = request.body;
+
+	const createManyProductsService = new CreateManyProductsService();
+
+	await createManyProductsService.execute({ products });
 
 	return response.send();
 });
