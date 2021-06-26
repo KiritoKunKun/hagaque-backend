@@ -1,6 +1,5 @@
 import { Category } from '@database/models/Category';
 import { Product } from '@database/models/Product';
-import AppError from 'src/errors/AppError';
 import { getRepository } from 'typeorm';
 
 interface Request {

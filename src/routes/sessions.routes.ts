@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { RefreshTokenService } from 'src/services/users/RefreshTokenService';
-import AuthenticateUserService from '../services/users/AuthenticateUserService';
+import AuthenticateUserService from 'services/users/AuthenticateUserService';
+import { RefreshTokenService } from 'services/users/RefreshTokenService';
 
 const sessionsRouter = Router();
 

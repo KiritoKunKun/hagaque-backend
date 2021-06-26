@@ -1,11 +1,11 @@
 import uploadConfig from '@config/upload';
 import { Router } from 'express';
 import multer from 'multer';
-import ProductImageController from 'src/controllers/ProductImageController';
-import { ensureAdmin } from 'src/middlewares/ensureAdmin';
-import { CreateManyProductsService } from 'src/services/products/CreateManyProductsService';
-import { CreateProductService } from 'src/services/products/CreateProductService';
-import UpdateProductImageService from 'src/services/products/UpdateProductImageService';
+import ProductImageController from 'controllers/ProductImageController';
+import { ensureAdmin } from 'middlewares/ensureAdmin';
+import { CreateManyProductsService } from 'services/products/CreateManyProductsService';
+import { CreateProductService } from 'services/products/CreateProductService';
+import UpdateProductImageService from 'services/products/UpdateProductImageService';
 import { container } from 'tsyringe';
 
 const productsRouter = Router();
