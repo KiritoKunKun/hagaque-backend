@@ -7,10 +7,16 @@ module.exports = {
 		[
 			'module-resolver',
 			{
-				aliast: {
-					'@config': ['./src/config'],
-					'@database': ['./src/database'],
-					'@shared': ['./src/shared'],
+				alias: {
+					'@config': './src/config',
+					'@controllers': './src/controllers',
+					'@database': './src/database',
+					'@errors': './src/errors',
+					'@middlewares': './src/middlewares',
+					'@repositories': './src/repositories',
+					'@routes': './src/routes',
+					'@services': './src/services',
+					'@shared': './src/shared',
 				},
 			},
 		],

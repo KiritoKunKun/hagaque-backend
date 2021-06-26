@@ -2,20 +2,25 @@
 	"compilerOptions": {
 		"target": "es5",
 		"module": "commonjs",
-		"outDir": "./dist",
-		"rootDir": "./src",
-		"strict": true,
-		"strictPropertyInitialization": false,
-		"allowJs": true,
+		"rootDir": "./",
 		"baseUrl": "./src",
+		"outDir": "./dist",
 		"paths": {
 			"@config/*": ["config/*"],
+			"@controllers/*": ["controllers/*"],
 			"@database/*": ["database/*"],
+			"@errors/*": ["errors/*"],
+			"@middlewares/*": ["middlewares/*"],
+			"@repositories/*": ["repositories/*"],
+			"@routes/*": ["routes/*"],
+			"@services/*": ["services/*"],
 			"@shared/*": ["shared/*"]
 		},
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-		"forceConsistentCasingInFileNames": true
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true
 	}
 }
