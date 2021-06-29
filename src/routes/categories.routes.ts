@@ -20,13 +20,14 @@ categoriesRouter.post('/', ensureAdmin, async (request, response) => {
 
 	const createCategoryService = new CreateCategoryService();
 
-	await createCategoryService.execute({ name, parentId });
+	const category = await createCategoryService.execute({ name, parentId });
 
-	return response.status(201).send();
+	return response.status(201).json(category);
 });
 
-categoriesRouter.put('/', ensureAdmin, async (request, response) => {
-	const { id, name } = request.body;
+categoriesRouter.put('/:id', ensureAdmin, async (request, response) => {
+	const { id } = request.params;
+	const { name } = request.body;
 
 	const updateCategoryService = new UpdateCategoryService();
 
@@ -35,8 +36,8 @@ categoriesRouter.put('/', ensureAdmin, async (request, response) => {
 	return response.send();
 });
 
-categoriesRouter.delete('/', ensureAdmin, async (request, response) => {
-	const { id } = request.body;
+categoriesRouter.delete('/:id', ensureAdmin, async (request, response) => {
+	const { id } = request.params;
 
 	const deleteCategoryService = new DeleteCategoryService();
 

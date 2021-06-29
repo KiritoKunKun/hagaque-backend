@@ -7,7 +7,7 @@ interface Request {
 }
 
 class CreateCategoryService {
-	public async execute({ name, parentId }: Request): Promise<void> {
+	public async execute({ name, parentId }: Request): Promise<Category> {
 		const categoriesRepository = getRepository(Category);
 
 		const category = categoriesRepository.create({
@@ -16,6 +16,8 @@ class CreateCategoryService {
 		});
 
 		await categoriesRepository.save(category);
+
+		return category;
 	}
 }
 
