@@ -11,6 +11,16 @@ class UpdateCategoryService {
 	public async execute({ id, name }: Request): Promise<void> {
 		const categoriesRepository = getRepository(Category);
 
+		const nameAlreadyExists = await categoriesRepository
+			.createQueryBuilder('category')
+			.where('category."id" != :id', { id })
+			.andWhere('category."name" = :name', { name })
+			.getOne();
+
+		if (nameAlreadyExists) {
+			throw new AppError('Esse nome já está em uso.');
+		}
+
 		const category = await categoriesRepository.findOne(id);
 
 		if (!category) {
