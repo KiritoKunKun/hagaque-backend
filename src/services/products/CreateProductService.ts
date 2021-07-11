@@ -1,52 +1,27 @@
 import { Category } from '@database/models/Category';
 import { Product } from '@database/models/Product';
-import AppError from '@errors/AppError';
 import { getRepository } from 'typeorm';
 
 interface Request {
-	name: string;
-	salePrice: number;
-	rentPrice?: number;
-	image: string;
-	description: string;
-	isbn?: string;
-	barCode?: string;
-	categoriesIds: string[];
+	product: Product;
 }
 
 class CreateProductService {
-	public async execute({
-		name,
-		salePrice,
-		rentPrice,
-		image,
-		description,
-		isbn,
-		barCode,
-		categoriesIds,
-	}: Request): Promise<void> {
+	public async execute({ product }: Request): Promise<void> {
 		const categoriesRepository = getRepository(Category);
 
-		const categories = await categoriesRepository.findByIds(categoriesIds);
-
-		if (!categories?.length) {
-			throw new AppError('As categorias informadas não existem.');
-		}
+		const categories = await categoriesRepository.findByIds(
+			product.categories
+		);
 
 		const productsRepository = getRepository(Product);
 
-		const product = productsRepository.create({
-			name,
-			salePrice,
-			rentPrice,
-			image,
-			description,
-			isbn,
-			barCode,
+		const newProduct = productsRepository.create({
+			...product,
 			categories,
 		});
 
-		await productsRepository.save(product);
+		await productsRepository.save(newProduct);
 	}
 }
 

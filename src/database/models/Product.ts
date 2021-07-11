@@ -26,9 +26,12 @@ class Product {
 	rentPrice?: number;
 
 	@Column()
-	image: string;
+	quantity: number;
 
-	@Expose({ name: 'image_url' })
+	@Column()
+	image?: string;
+
+	@Expose({ name: 'imageUrl' })
 	getAvatarUrl(): string | null {
 		if (!this.image) {
 			return null;
@@ -47,15 +50,66 @@ class Product {
 	@Column()
 	description: string;
 
+	@ManyToMany(() => Category)
+	@JoinTable()
+	categories: Category[];
+
+	@Column()
+	serie?: string;
+
+	@Column()
+	periodicity?: string;
+
+	@Column('varchar', { array: true })
+	characters?: string[];
+
+	@Column()
+	number?: number;
+
+	@Column()
+	size?: string;
+
+	@Column()
+	weight?: string;
+
+	@Column()
+	pageNumber?: number;
+
+	@Column()
+	language?: string;
+
+	@Column()
+	bookbinding?: string;
+
+	@Column()
+	color?: string;
+
+	@Column()
+	author?: string;
+
+	@Column()
+	publishingCompany?: string;
+
+	@Column()
+	format?: string;
+
+	@Column()
+	condition?: string;
+
+	@Column()
+	preservationStatus?: string;
+
 	@Column()
 	isbn?: string;
 
 	@Column()
 	barCode?: string;
 
-	@ManyToMany(() => Category)
-	@JoinTable()
-	categories: Category[];
+	@Column()
+	skuCode?: string;
+
+	@Column()
+	releaseDate?: Date;
 
 	@CreateDateColumn()
 	created_at: Date;
