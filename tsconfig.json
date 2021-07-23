@@ -7,13 +7,7 @@
 		"outDir": "./dist",
 		"paths": {
 			"@config/*": ["config/*"],
-			"@controllers/*": ["controllers/*"],
-			"@database/*": ["database/*"],
-			"@errors/*": ["errors/*"],
-			"@middlewares/*": ["middlewares/*"],
-			"@repositories/*": ["repositories/*"],
-			"@routes/*": ["routes/*"],
-			"@services/*": ["services/*"],
+			"@modules/*": ["modules/*"],
 			"@shared/*": ["shared/*"]
 		},
 		"esModuleInterop": true,
