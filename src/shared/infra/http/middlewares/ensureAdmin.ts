@@ -1,5 +1,5 @@
-import authConfig from '@config/auth';
-import User from '@modules/users/infra/typeorm/entities/User';
+import { authConfig } from '@config/auth';
+import { User } from '@modules/users/infra/typeorm/entities/User';
 import { AppError } from '@shared/errors/AppError';
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';

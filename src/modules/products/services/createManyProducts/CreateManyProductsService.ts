@@ -1,6 +1,10 @@
 import { Category } from '@modules/categories/infra/typeorm/entities/Category';
+import {
+	CreateManyProductsDTO,
+	IProductsRepository,
+} from '@modules/products/types/ProductsRepositoryTypes';
+import { inject, injectable } from 'tsyringe';
 import { getRepository } from 'typeorm';
-import { Product } from '../infra/typeorm/entities/Product';
 
 interface Request {
 	products: {
@@ -35,26 +39,30 @@ interface Request {
 	}[];
 }
 
+@injectable()
 class CreateManyProductsService {
+	constructor(
+		@inject('ProductsRepository')
+		private productsRepository: IProductsRepository
+	) {}
+
 	public async execute({ products }: Request): Promise<void> {
 		const categoriesRepository = getRepository(Category);
 
 		const categories = await categoriesRepository.find();
 
-		const productsRepository = getRepository(Product);
-
-		const productsEntities = productsRepository.create(
-			products.map((product) => ({
+		const newProducts: CreateManyProductsDTO[] = products.map(
+			(product) => ({
 				...product,
 				categories: categories.filter((category) =>
 					product.categoriesNames
 						.map((categoryName) => categoryName.toLowerCase())
 						.includes(category.name.toLowerCase())
 				),
-			}))
+			})
 		);
 
-		await productsRepository.save(productsEntities);
+		await this.productsRepository.createMany(newProducts);
 	}
 }
 

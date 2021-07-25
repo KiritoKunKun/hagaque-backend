@@ -13,7 +13,7 @@ import { container } from 'tsyringe';
 
 const productsRouter = Router();
 
-const productImageController = new ProductImageController();
+const productImageController = container.resolve(ProductImageController);
 
 const upload = multer(uploadConfig.multer);
 
@@ -46,7 +46,7 @@ productsRouter.get('/:id', async (request, response) => {
 });
 
 productsRouter.post('/', ensureAdmin, async (request, response) => {
-	const createProductService = new CreateProductService();
+	const createProductService = container.resolve(CreateProductService);
 
 	await createProductService.execute({
 		product: request.body,
@@ -58,7 +58,9 @@ productsRouter.post('/', ensureAdmin, async (request, response) => {
 productsRouter.post('/list', ensureAdmin, async (request, response) => {
 	const { products } = request.body;
 
-	const createManyProductsService = new CreateManyProductsService();
+	const createManyProductsService = container.resolve(
+		CreateManyProductsService
+	);
 
 	await createManyProductsService.execute({ products });
 

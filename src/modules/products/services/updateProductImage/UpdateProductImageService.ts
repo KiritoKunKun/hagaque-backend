@@ -1,8 +1,7 @@
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { getRepository } from 'typeorm';
-import { Product } from '../infra/typeorm/entities/Product';
+import { IProductsRepository } from '../types/ProductsRepositoryTypes';
 
 interface Request {
 	id: string;
@@ -13,13 +12,13 @@ interface Request {
 class UpdateProductImageService {
 	constructor(
 		@inject('StorageProvider')
-		private storageProvider: IStorageProvider
+		private storageProvider: IStorageProvider,
+		@inject('ProductsRepository')
+		private productsRepository: IProductsRepository
 	) {}
 
 	public async execute({ id, imageFilename }: Request) {
-		const productsRepository = getRepository(Product);
-
-		const product = await productsRepository.findOne({ where: { id } });
+		const product = await this.productsRepository.findById(id);
 
 		if (!product) {
 			throw new AppError('O produto não foi encontrado.');
@@ -39,7 +38,7 @@ class UpdateProductImageService {
 
 		product.image = fileName;
 
-		await productsRepository.save(product);
+		await this.productsRepository.save(product);
 
 		return product;
 	}

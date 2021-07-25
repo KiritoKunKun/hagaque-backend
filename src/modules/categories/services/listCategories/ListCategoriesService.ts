@@ -1,15 +1,16 @@
-import { getRepository } from 'typeorm';
-import { Category } from '../infra/typeorm/entities/Category';
+import { Category } from '@modules/categories/infra/typeorm/entities/Category';
+import { ICategoriesRepository } from '@modules/categories/types/CategoriesRepositoryTypes';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 class ListCategoriesService {
-	public async execute(): Promise<Category[]> {
-		const categoriesRepository = getRepository(Category);
+	constructor(
+		@inject('CategoriesRepository')
+		private categoriesRepository: ICategoriesRepository
+	) {}
 
-		const categories = await categoriesRepository.find({
-			order: {
-				name: 'ASC',
-			},
-		});
+	public async execute(): Promise<Category[]> {
+		const categories = await this.categoriesRepository.list();
 
 		const categoriesList = this.createCategories(categories);
 
