@@ -1,4 +1,4 @@
-import { CreateUserService } from '@modules/users/services/CreateUserService';
+import { CreateUserService } from '@modules/users/services/createUserService/CreateUserService';
 import { Router } from 'express';
 import { container } from 'tsyringe';
 

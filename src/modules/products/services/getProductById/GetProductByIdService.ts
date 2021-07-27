@@ -1,7 +1,7 @@
+import { Product } from '@modules/products/infra/typeorm/entities/Product';
+import { IProductsRepository } from '@modules/products/types/ProductsRepositoryTypes';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { Product } from '../infra/typeorm/entities/Product';
-import { IProductsRepository } from '../types/ProductsRepositoryTypes';
 
 interface Request {
 	id: string;

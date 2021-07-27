@@ -1,10 +1,10 @@
 import { authConfig } from '@config/auth';
+import { User } from '@modules/users/infra/typeorm/entities/User';
+import { IUsersRepository } from '@modules/users/types/UsersRepositoryTypes';
 import { AppError } from '@shared/errors/AppError';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
-import { User } from '../infra/typeorm/entities/User';
-import { IUsersRepository } from '../types/UsersRepositoryTypes';
 
 interface Request {
 	email: string;

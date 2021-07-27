@@ -1,5 +1,5 @@
-import { AuthenticateUserService } from '@modules/users/services/AuthenticateUserService';
-import { RefreshTokenService } from '@modules/users/services/RefreshTokenService';
+import { AuthenticateUserService } from '@modules/users/services/authenticateUserService/AuthenticateUserService';
+import { RefreshTokenService } from '@modules/users/services/refreshTokenService/RefreshTokenService';
 import { Router } from 'express';
 import { container } from 'tsyringe';
 
@@ -21,7 +21,7 @@ sessionsRouter.post('/', async (request, response) => {
 });
 
 sessionsRouter.post('/refresh', async (request, response) => {
-	const refreshTokenService = new RefreshTokenService();
+	const refreshTokenService = container.resolve(RefreshTokenService);
 
 	const newToken = await refreshTokenService.execute({
 		authHeader: request.headers.authorization,

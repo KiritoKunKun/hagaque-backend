@@ -1,7 +1,7 @@
+import { IProductsRepository } from '@modules/products/types/ProductsRepositoryTypes';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { IProductsRepository } from '../types/ProductsRepositoryTypes';
 
 interface Request {
 	id: string;

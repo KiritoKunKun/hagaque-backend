@@ -1,7 +1,7 @@
 import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { UpdateProductImageService } from '../services/UpdateProductImageService';
+import { UpdateProductImageService } from '../services/updateProductImage/UpdateProductImageService';
 
 class ProductImageController {
 	public async update(

@@ -1,10 +1,10 @@
 import { uploadConfig } from '@config/upload';
 import { ProductImageController } from '@modules/products/controllers/ProductImageController';
-import { CreateManyProductsService } from '@modules/products/services/CreateManyProductsService';
-import { CreateProductService } from '@modules/products/services/CreateProductService';
-import { GetProductByIdService } from '@modules/products/services/GetProductByIdService';
-import { ListProductsService } from '@modules/products/services/ListProductsService';
-import { UpdateProductImageService } from '@modules/products/services/UpdateProductImageService';
+import { CreateManyProductsService } from '@modules/products/services/createManyProducts/CreateManyProductsService';
+import { CreateProductService } from '@modules/products/services/createProduct/CreateProductService';
+import { GetProductByIdService } from '@modules/products/services/getProductById/GetProductByIdService';
+import { ListProductsService } from '@modules/products/services/listProducts/ListProductsService';
+import { UpdateProductImageService } from '@modules/products/services/updateProductImage/UpdateProductImageService';
 import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
 import { classToClass } from 'class-transformer';
 import { Router } from 'express';
