@@ -3,12 +3,12 @@
 		"target": "es5",
 		"module": "commonjs",
 		"rootDir": "./",
-		"baseUrl": "./src",
+		"baseUrl": ".",
 		"outDir": "./dist",
 		"paths": {
-			"@config/*": ["config/*"],
-			"@modules/*": ["modules/*"],
-			"@shared/*": ["shared/*"]
+			"@config/*": ["src/config/*"],
+			"@modules/*": ["src/modules/*"],
+			"@shared/*": ["src/shared/*"]
 		},
 		"esModuleInterop": true,
 		"experimentalDecorators": true,

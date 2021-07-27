@@ -24,4 +24,7 @@ export interface CheckIfCategoryExistParams {
 	name: string;
 }
 
-export interface CreateCategoryDTO {}
+export interface CreateCategoryDTO {
+	name: string;
+	parentId?: string;
+}

@@ -1,4 +1,4 @@
-import { CategoriesRepository } from '@modules/categories/infra/typeorm/repositories/CategoriesRepository';
+import { CategoriesRepository } from '@modules/categories/infra/typeorm/repositories/implementations/CategoriesRepository';
 import { ICategoriesRepository } from '@modules/categories/types/CategoriesRepositoryTypes';
 import { ProductsRepository } from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import { IProductsRepository } from '@modules/products/types/ProductsRepositoryTypes';

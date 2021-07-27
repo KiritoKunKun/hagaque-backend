@@ -4,7 +4,7 @@ import {
 } from '@modules/categories/types/CategoriesRepositoryTypes';
 import { CreateManyProductsDTO } from '@modules/products/types/ProductsRepositoryTypes';
 import { getRepository, Repository } from 'typeorm';
-import { Category } from '../entities/Category';
+import { Category } from '../../entities/Category';
 
 class CategoriesRepository implements ICategoriesRepository {
 	private ormRepository: Repository<Category>;
