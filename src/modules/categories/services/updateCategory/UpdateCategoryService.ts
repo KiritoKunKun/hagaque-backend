@@ -16,7 +16,10 @@ class UpdateCategoryService {
 
 	public async execute({ id, name }: Request): Promise<void> {
 		const nameAlreadyExists =
-			await this.categoriesRepository.checkIfCategoryExist({ id, name });
+			await this.categoriesRepository.checkIfCategoryNameExist({
+				id,
+				name,
+			});
 
 		if (nameAlreadyExists) {
 			throw new AppError('Esse nome já está em uso.');

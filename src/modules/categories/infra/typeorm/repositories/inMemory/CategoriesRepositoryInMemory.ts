@@ -1,5 +1,5 @@
 import {
-	CheckIfCategoryExistParams,
+	CheckIfCategoryNameExistParams,
 	CreateCategoryDTO,
 	ICategoriesRepository,
 } from '@modules/categories/types/CategoriesRepositoryTypes';
@@ -61,12 +61,12 @@ class CategoriesRepositoryInMemory implements ICategoriesRepository {
 		this.categories = categories;
 	};
 
-	checkIfCategoryExist = async ({
+	checkIfCategoryNameExist = async ({
 		id,
 		name,
-	}: CheckIfCategoryExistParams): Promise<boolean> => {
+	}: CheckIfCategoryNameExistParams): Promise<boolean> => {
 		const category = this.categories.find(
-			(e) => e.id === id || e.name === name
+			(e) => e.id !== id && e.name === name
 		);
 
 		return !!category;

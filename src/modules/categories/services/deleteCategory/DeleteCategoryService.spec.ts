@@ -23,7 +23,7 @@ describe('Delete Category', () => {
 		);
 	});
 
-	it('should be able to list all categories', async () => {
+	it('should be able to delete a category', async () => {
 		const category: CreateCategoryDTO = {
 			name: 'Category Test',
 		};

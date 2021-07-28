@@ -8,8 +8,8 @@ export interface ICategoriesRepository {
 	create: (category: CreateCategoryDTO) => Promise<Category>;
 	save: (category: Category) => Promise<Category>;
 	delete: (id: string) => Promise<void>;
-	checkIfCategoryExist: (
-		params: CheckIfCategoryExistParams
+	checkIfCategoryNameExist: (
+		params: CheckIfCategoryNameExistParams
 	) => Promise<boolean>;
 }
 
@@ -19,7 +19,7 @@ export interface ListCategoriesParams {
 	limit?: string;
 }
 
-export interface CheckIfCategoryExistParams {
+export interface CheckIfCategoryNameExistParams {
 	id: string;
 	name: string;
 }

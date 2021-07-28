@@ -1,5 +1,5 @@
 import {
-	CheckIfCategoryExistParams,
+	CheckIfCategoryNameExistParams,
 	ICategoriesRepository,
 } from '@modules/categories/types/CategoriesRepositoryTypes';
 import { CreateManyProductsDTO } from '@modules/products/types/ProductsRepositoryTypes';
@@ -70,10 +70,10 @@ class CategoriesRepository implements ICategoriesRepository {
 		await this.ormRepository.delete(id);
 	};
 
-	public checkIfCategoryExist = async ({
+	public checkIfCategoryNameExist = async ({
 		id,
 		name,
-	}: CheckIfCategoryExistParams): Promise<boolean> => {
+	}: CheckIfCategoryNameExistParams): Promise<boolean> => {
 		const category = await this.ormRepository
 			.createQueryBuilder('category')
 			.where('category."id" != :id', { id })
